@@ -1,0 +1,97 @@
+sylius_grid:
+    grids:
+        monsieurbiz_case_study_admin_case_study:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: '%monsieurbiz_case_study.model.case_study.class%'
+                    repository:
+                        method: createListQueryBuilder
+                        arguments: [ "expr:service('sylius.context.locale').getLocaleCode()" ]
+            sorting:
+                id: desc
+            filters:
+                title:
+                    type: string
+                    label: monsieurbiz_case_study.ui.title
+                    options:
+                        fields: [ translation.title ]
+                enabled:
+                    type: boolean
+                    label: sylius.ui.enabled
+                state:
+                    type: select
+                    label: sylius.ui.state
+                    form_options:
+                        choices:
+                            monsieurbiz_case_study.ui.draft: draft
+                            monsieurbiz_case_study.ui.published: published
+                channel:
+                    type: entity
+                    label: sylius.ui.channel
+                    options:
+                        fields: [channels.id]
+                    form_options:
+                        class: "%sylius.model.channel.class%"
+                publishedAt:
+                    type: date
+                    label: monsieurbiz_case_study.ui.published_at
+            fields:
+                id:
+                    label: sylius.ui.id
+                    type: string
+                    sortable: ~
+                title:
+                    type: string
+                    label: monsieurbiz_case_study.ui.title
+                channels:
+                    type: twig
+                    label: sylius.ui.channels
+                    options:
+                        template: '@SyliusAdmin/Grid/Field/_channels.html.twig'
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                state:
+                    type: twig
+                    label: sylius.ui.state
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/state.html.twig"
+                        vars:
+                            labels: "@MonsieurBizSyliusCaseStudyPlugin/Admin/CaseStudy/State"
+                updatedAt:
+                    type: datetime
+                    sortable: ~
+                    label: sylius.ui.updating_date
+                publishedAt:
+                    type: datetime
+                    sortable: ~
+                    label: monsieurbiz_case_study.ui.published_at
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                    publish:
+                        type: apply_transition
+                        label: monsieurbiz_case_study.ui.publish
+                        icon: check
+                        options:
+                            link:
+                                route: monsieurbiz_case_study_admin_case_study_update_state
+                                parameters:
+                                    id: resource.id
+                                    state: !php/const \MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyInterface::TRANSITION_PUBLISH
+                            class: green
+                            transition: !php/const \MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyInterface::TRANSITION_PUBLISH
+                            graph: !php/const \MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyInterface::GRAPH
+                bulk:
+                    delete:
+                        type: delete

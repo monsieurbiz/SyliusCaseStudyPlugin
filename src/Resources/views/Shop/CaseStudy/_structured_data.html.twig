@@ -1,0 +1,19 @@
+{% set NewsArticle = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": caseStudy.title,
+    "datePublished": caseStudy.publishedAt|date('c'),
+    "dateModified": caseStudy.updatedAt|date('c'),
+} %}
+
+{% if caseStudy.image is not empty %}
+    {% set newsArticle = newsArticle|merge({
+        "image": [
+            caseStudy.image|default('monsieurbiz_case_study_image_thumbnail'),
+        ]
+    }) %}
+{% endif %}
+
+<script type="application/ld+json">
+    {{ newsArticle|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+</script>

@@ -1,0 +1,11 @@
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                monsieurbiz_case_study_tag:
+                    options:
+                        random: 30
+
+                monsieubiz_case_study:
+                    options:
+                        random: 100

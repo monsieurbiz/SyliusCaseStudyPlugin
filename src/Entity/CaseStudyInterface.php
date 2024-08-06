@@ -22,7 +22,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 
 interface CaseStudyInterface extends ChannelsAwareInterface, ResourceInterface, SlugAwareInterface, ToggleableInterface, TranslatableInterface, TimestampableInterface
 {
-    public const GRAPH = 'monsieurbiz_blog_case_study';
+    public const GRAPH = 'monsieurbiz_case_study';
 
     public const TRANSITION_PUBLISH = 'publish';
 

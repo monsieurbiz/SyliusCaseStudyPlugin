@@ -1,0 +1,85 @@
+monsieurbiz_case_study_admin_tag:
+    resource: |
+        section: admin
+        alias: monsieurbiz_case_study.tag
+        path: /case-study/tag
+        templates: "@MonsieurBizSyliusCaseStudyPlugin/Admin/Tag"
+        redirect: update
+        only: ['update', 'delete']
+        vars:
+            all:
+                subheader: monsieurbiz_case_study.ui.manage_your_case_studies_tags
+                index:
+                    route:
+                        name: monsieurbiz_case_study_admin_tag_create
+    type: sylius.resource
+
+monsieurbiz_case_study_admin_tag_index:
+    path: /case-study/tags
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: monsieurbiz_case_study_admin_tag_create
+        permanent: true
+        keepQueryParams: true
+
+monsieurbiz_case_study_admin_tag_create:
+    path: /case-study/tag/new
+    methods: [ GET, POST ]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.tag::createAction
+        _sylius:
+            section: admin
+            permission: true
+            template: "@MonsieurBizSyliusCaseStudyPlugin/Admin/Tag/create.html.twig"
+            factory:
+                method: createNew
+            redirect:
+                route: monsieurbiz_case_study_admin_tag_create
+            vars:
+                subheader: monsieurbiz_case_study.ui.manage_your_case_study_tags
+                index:
+                    route:
+                        name: 'monsieurbiz_case_study_admin_tag_create'
+
+monsieurbiz_case_study_admin_partial_tags_tree:
+    path: /_partial/case-study/tags/tree
+    methods: [GET]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.tag::indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findHydratedRootNodes
+            permission: true
+
+monsieurbiz_case_study_admin_case_study:
+    resource: |
+        section: admin
+        alias: monsieurbiz_case_study.case_study
+        path: /case-study/case-studies
+        templates: "@SyliusAdmin/Crud"
+        redirect: index
+        except: ['show']
+        grid: monsieurbiz_case_study_admin_case_study
+        vars:
+            index:
+                icon: 'newspaper'
+            update:
+                templates:
+                    toolbar: "@MonsieurBizSyliusCaseStudyPlugin/Admin/CaseStudy/Update/_toolbar.html.twig"
+    type: sylius.resource
+
+monsieurbiz_case_study_admin_case_study_update_state:
+    path: /case-study/case_studies/{id}/{state}
+    methods: [PUT]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.case_study::applyStateMachineTransitionAction
+        _sylius:
+            event: $state
+            section: admin
+            permission: true
+            state_machine:
+                graph: !php/const \MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyInterface::GRAPH
+                transition: $state
+            redirect: referer
+            flash: monsieurbiz_case_study.case_study.$state

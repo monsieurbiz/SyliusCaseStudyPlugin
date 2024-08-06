@@ -29,6 +29,10 @@ composer require monsieurbiz/sylius-case-study-plugin
 <details><summary>For the installation without flex, follow these additional steps</summary>
 <p>
 
+
+Configure [Monsieur Biz Rich Editor Plugin](https://github.com/monsieurbiz/SyliusRichEditorPlugin/#installation)
+Configure [Monsieur Biz Media Manager Plugin](https://github.com/monsieurbiz/SyliusMediaManagerPlugin/#installation)
+
 Change your `config/bundles.php` file to add this line for the plugin declaration:
 ```php
 <?php
@@ -49,9 +53,16 @@ imports:
 Finally import the routes in `config/routes/monsieurbiz_sylius_case_study_plugin.yaml` : 
 
 ```yaml
+monsieurbiz_case_study_shop:
+    resource: '@MonsieurBizSyliusCaseStudyPlugin/Resources/config/routes/shop.yaml'
+    prefix: /{_locale}
+    requirements:
+        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 
 
-
+monsieurbiz_case_study_admin:
+    resource: '@MonsieurBizSyliusCaseStudyPlugin/Resources/config/routes/admin.yaml'
+    prefix: '/%sylius_admin.path_name%'
 ```
 
 </p>

@@ -1,0 +1,52 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}
+    {{ caseStudy.title }} - {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
+{% endblock %}
+
+{% block metatags %}
+    {% include '@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/_structured_data.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="ui breadcrumb">
+        <a href="{{ path('sylius_shop_homepage') }}" class="section">{{ 'sylius.ui.home'|trans }}</a>
+        <div class="divider"> / </div>
+        <a href="{{ path('monsieurbiz_case_study_index') }}" class="section">{{ 'monsieurbiz_case_study.ui.case_study'|trans }}</a>
+        <div class="divider"> / </div>
+        <div class="active section">{{ caseStudy.title }}</div>
+    </div>
+
+    <div class="ui stackable grid">
+        <div class="sixteen wide column">
+            <div class="ui">
+                <div class="ui header center aligned">
+                    <div>
+                        {% for tag in caseStudy.tags %}
+                            <a href="{{ path('monsieurbiz_case_study_tag_show', { 'slug': tag.slug }) }}">
+                                {{ tag.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <h1 class="ui huge">
+                        {{ caseStudy.title }}
+                    </h1>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui fluid image">
+                    {% include '@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/_image.html.twig' with {'filter': 'monsieurbiz_case_study_image_large_thumbnail'} %}
+                </div>
+                <div class="ui hidden divider"></div>
+                <div>
+                    <div class="ui meta">
+                        <span class="date">{{ caseStudy.publishedAt|format_date() }}</span>
+                    </div>
+                    <div class="ui description">
+                        {{ caseStudy.content|monsieurbiz_richeditor_render_field }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

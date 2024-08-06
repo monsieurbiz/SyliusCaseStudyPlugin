@@ -1,0 +1,24 @@
+sylius_resource:
+    resources:
+        monsieurbiz_case_study.tag:
+            classes:
+                model: MonsieurBiz\SyliusCaseStudyPlugin\Entity\Tag
+                interface: MonsieurBiz\SyliusCaseStudyPlugin\Entity\TagInterface
+                repository: MonsieurBiz\SyliusCaseStudyPlugin\Repository\TagRepository
+                form: MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\TagType
+            translation:
+                classes:
+                    model: MonsieurBiz\SyliusCaseStudyPlugin\Entity\TagTranslation
+                    interface: MonsieurBiz\SyliusCaseStudyPlugin\Entity\TagTranslationInterface
+                    form: MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\TagTranslationType
+        monsieurbiz_case_study.case_study:
+            classes:
+                model: MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudy
+                interface: MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyInterface
+                repository: MonsieurBiz\SyliusCaseStudyPlugin\Repository\CaseStudyRepository
+                form: MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\CaseStudyType
+            translation:
+                classes:
+                    model: MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyTranslation
+                    interface: MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudyTranslationInterface
+                    form: MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\CaseStudyTranslationType

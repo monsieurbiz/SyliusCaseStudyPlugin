@@ -8,7 +8,37 @@ services:
         resource: '../../*'
         exclude: '../../{Entity,Migrations}'
 
-    MonsieurBiz\SyliusCaseStudyPlugin\Controller\:
-        resource: '../../Controller'
-        tags: [ 'controller.service_arguments' ]
+    # Add menu item in admin panel
+    MonsieurBiz\SyliusCaseStudyPlugin\EventListener\AdminMenuListener:
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main }
+    # Form types
+    MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\TagType:
+        arguments:
+            $dataClass: '%monsieurbiz_case_study.model.tag.class%'
+            $validationGroups: ['monsieurbiz']
 
+    MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\TagTranslationType:
+        arguments:
+            $dataClass: '%monsieurbiz_case_study.model.tag_translation.class%'
+            $validationGroups: ['monsieurbiz']
+
+    MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\CaseStudyType:
+        arguments:
+            $dataClass: '%monsieurbiz_case_study.model.case_study.class%'
+            $validationGroups: ['monsieurbiz']
+
+    MonsieurBiz\SyliusCaseStudyPlugin\Form\Type\CaseStudyTranslationType:
+        arguments:
+            $dataClass: '%monsieurbiz_case_study.model.case_study_translation.class%'
+            $validationGroups: ['monsieurbiz']
+
+    # Menus
+    MonsieurBiz\SyliusCaseStudyPlugin\Menu\AdminCaseStudyUpdateMenuBuilder:
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu, alias: monsieurbiz_case_study.admin.case_study.update }
+
+    # Fixtures
+    MonsieurBiz\SyliusCaseStudyPlugin\Fixture\Factory\CaseStudyFixtureFactory:
+        arguments:
+            $fileLocator: '@file_locator'

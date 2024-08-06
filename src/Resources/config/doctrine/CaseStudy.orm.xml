@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudy" table="monsieurbiz_case_study">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="enabled" type="boolean">
+            <options>
+                <option name="default">1</option>
+            </options>
+        </field>
+
+        <field name="image" nullable="true" />
+        
+        <field name="imageThumbnail" nullable="true" />
+
+        <field name="state" />
+
+        <field name="publishedAt" type="datetime" nullable="true" />
+
+        <field name="createdAt" column="created_at" type="datetime_immutable">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <field name="updatedAt" column="updated_at" type="datetime">
+            <gedmo:timestampable on="update"/>
+        </field>
+
+        <many-to-many field="tags" target-entity="MonsieurBiz\SyliusCaseStudyPlugin\Entity\TagInterface" inversed-by="caseStudies">
+            <join-table name="monsieurbiz_case_study_tags">
+                <join-columns>
+                    <join-column name="case_study_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="tag_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <many-to-many field="channels" target-entity="Sylius\Component\Core\Model\ChannelInterface">
+            <join-table name="monsieurbiz_case_study_channels">
+                <join-columns>
+                    <join-column name="case_study_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="channel_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </mapped-superclass>
+</doctrine-mapping>

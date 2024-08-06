@@ -1,0 +1,60 @@
+monsieurbiz_case_study_index:
+    path: /case-study
+    methods: [ GET ]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.case_study::indexAction
+        _sylius:
+            template: "@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/index.html.twig"
+            grid: monsieurbiz_case_study_shop_case_study
+
+monsieurbiz_case_study_tag_show:
+    path: /case-study/tag/{slug}
+    methods: [ GET ]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.case_study::indexAction
+        _sylius:
+            template: "@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/index.html.twig"
+            grid: monsieurbiz_case_study_shop_tag_case_study
+            parameters:
+                tag: "expr:notFoundOnNull(service('monsieurbiz_case_study.repository.tag').findOneBySlug($slug, service('sylius.context.locale').getLocaleCode()))"
+
+monsieurbiz_case_study_partial_tag_show:
+    path: /_partial/case-study/tag/{slug}
+    methods: [GET]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.case_study::indexAction
+        _sylius:
+            template: "@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/_list.html.twig"
+            grid: monsieurbiz_case_study_shop_case_study
+            paginate: false
+    requirements:
+        slug: "[^/]+"
+
+monsieurbiz_case_study_partial_tag_show_by_slug:
+    path: /_partial/case-study/tag/by-slug/{slug}
+    methods: [GET]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.tag::showAction
+        _sylius:
+            template: $template
+            repository:
+                method: findOneBySlug
+                arguments:
+                    - $slug
+                    - "expr:service('sylius.context.locale').getLocaleCode()"
+    requirements:
+        slug: .+
+
+monsieurbiz_case_study_case_study_show:
+    path: /case-study/{slug}
+    methods: [ GET ]
+    defaults:
+        _controller: monsieurbiz_case_study.controller.case_study::showAction
+        _sylius:
+            template: "@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/show.html.twig"
+            repository:
+                method: findOnePublishedBySlug
+                arguments:
+                    - $slug
+                    - "expr:service('sylius.context.locale').getLocaleCode()"
+                    - "expr:service('sylius.context.channel').getChannel()"

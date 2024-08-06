@@ -1,0 +1,30 @@
+monsieurbiz_case_study:
+    form:
+        tag:
+            title: Title
+            slug: Slug
+        case_study:
+            tags: Tags
+            title: Title
+            slug: Slug
+            content: Content
+            image: Image
+            image_thumbnail: Image thumbnail
+            description: Description
+    ui:
+        menu_case_studies: Case studies
+        tags: Tags
+        new_tag: New tag
+        edit_tag: Edit tag
+        manage_your_case_studies_tags: Manage your case studies tags
+        case_studies: Case studies
+        new_case_study: New case study
+        edit_case_study: Edit case study
+        title: Title
+        published_at: Published at
+        publish: Publish
+        draft: Draft
+        published: Published
+        see_more_case_studies: See more case studies
+        case_study: Case study
+        read_more: Read more

@@ -1,0 +1,5 @@
+MonsieurBiz\SyliusCaseStudyPlugin\Entity\Tag:
+    properties:
+        translations:
+            -   Valid:
+                    groups: [ monsieurbiz ]

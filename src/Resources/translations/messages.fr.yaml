@@ -1,0 +1,30 @@
+monsieurbiz_case_study:
+    form:
+        tag:
+            title: Titre
+            slug: Slug
+        case_study:
+            tags: Tags
+            title: Titre
+            slug: Slug
+            content: Contenu
+            image: Image
+            image_thumbnail: Image miniature
+            description: Description
+    ui:
+        menu_case_studies: Études de cas
+        tags: Tags
+        new_tag: Nouveau tag
+        edit_tag: Modifier le tag
+        manage_your_case_studies_tags: Gérer vos tags d'études de cas
+        case_studies: Études de cas
+        new_case_study: Nouvelle étude de cas
+        edit_case_study: Modifier l'étude de cas
+        title: Titre
+        published_at: Publiée le
+        publish: Publier
+        draft: Brouillon
+        published: Publiée
+        see_more_case_studies: Voir plus d'études de cas
+        case_study: Étude de cas
+        read_more: Lire la suite

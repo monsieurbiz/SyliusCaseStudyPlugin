@@ -1,0 +1,16 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+{% set tag = configuration.parameters.get('parameters')['tag'] ?? null %}
+
+{% block title %}
+    {% if tag is defined and tag is not null %}
+        {{ tag.name }} - {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
+    {% else %}
+        {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% include '@MonsieurBizSyliusCaseStudyPlugin/Shop/Tag/_header.html.twig' with {'tag': tag} %}
+
+    {% include '@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/_list.html.twig' %}
+{% endblock %}

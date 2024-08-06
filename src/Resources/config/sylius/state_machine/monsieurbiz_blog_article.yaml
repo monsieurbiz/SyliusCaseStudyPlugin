@@ -1,0 +1,20 @@
+winzou_state_machine:
+    monsieurbiz_case_study:
+        class: "%monsieurbiz_case_study.model.case_study.class%"
+        property_path: state
+        graph: monsieurbiz_case_study
+        state_machine_class: "%sylius.state_machine.class%"
+        states:
+            draft: ~
+            published: ~
+        transitions:
+            publish:
+                from: [draft, ready]
+                to: published
+        callbacks:
+            after:
+                monsieurbiz_case_study_save_publish_date:
+                    on: ["publish"]
+                    do: ["object", "publish"]
+                    args: ["object"]
+                    priority: -100

@@ -1,0 +1,11 @@
+MonsieurBiz\SyliusCaseStudyPlugin\Entity\CaseStudy:
+    properties:
+        tags:
+            -   NotBlank:
+                    groups: [ monsieurbiz ]
+            -   Count:
+                    min: 1
+                    groups: [ monsieurbiz ]
+        translations:
+            -   Valid:
+                    groups: [ monsieurbiz ]
