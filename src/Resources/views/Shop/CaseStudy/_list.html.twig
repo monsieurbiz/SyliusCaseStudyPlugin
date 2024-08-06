@@ -4,7 +4,9 @@
 {% if resources.data|length %}
     <div class="ui three cards">
         {% for case_study in case_studies.data %}
-            {% if case_study.image %}
+            {% if case_study.imageThumbnail %}
+                {% set path = case_study.imageThumbnail|imagine_filter('monsieurbiz_case_study_image_thumbnail') %}
+            {% elseif case_study.image %}
                 {% set path = case_study.image|imagine_filter('monsieurbiz_case_study_image_thumbnail') %}
             {% else %}
                 {% if use_webpack %}

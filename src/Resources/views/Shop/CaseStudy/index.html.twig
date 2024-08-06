@@ -3,9 +3,9 @@
 
 {% block title %}
     {% if tag is defined and tag is not null %}
-        {{ tag.name }} - {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
+        {{ tag.name }} - {{ 'monsieurbiz_case_study.ui.case_studies'|trans }} {{ parent() }}
     {% else %}
-        {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
+        {{ 'monsieurbiz_case_study.ui.case_studies'|trans }} {{ parent() }}
     {% endif %}
 {% endblock %}
 

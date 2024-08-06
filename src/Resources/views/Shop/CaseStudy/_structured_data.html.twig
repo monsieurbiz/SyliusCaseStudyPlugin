@@ -6,7 +6,13 @@
     "dateModified": case_study.updatedAt|date('c'),
 } %}
 
-{% if case_study.image is not empty %}
+{% if case_study.imageThumbnail is not empty %}
+    {% set newsArticle = newsArticle|merge({
+        "image": [
+            case_study.imageThumbnail|default('monsieurbiz_case_study_image_thumbnail'),
+        ]
+    }) %}
+{% elseif case_study.image is not empty %}
     {% set newsArticle = newsArticle|merge({
         "image": [
             case_study.image|default('monsieurbiz_case_study_image_thumbnail'),
