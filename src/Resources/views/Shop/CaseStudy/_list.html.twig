@@ -3,9 +3,9 @@
 
 {% if resources.data|length %}
     <div class="ui three cards">
-        {% for caseStudy in caseStudies.data %}
-            {% if caseStudy.image %}
-                {% set path = caseStudy.image|imagine_filter('monsieurbiz_case_study_image_thumbnail') %}
+        {% for case_study in case_studies.data %}
+            {% if case_study.image %}
+                {% set path = case_study.image|imagine_filter('monsieurbiz_case_study_image_thumbnail') %}
             {% else %}
                 {% if use_webpack %}
                     {% set path = asset('build/shop/images/200x200.png', 'shop') %}
@@ -15,7 +15,7 @@
             {% endif %}
 
             <div class="ui fluid card">
-                <a href="{{ path('monsieurbiz_case_study_case_study_show', { 'slug': caseStudy.slug }) }}" class="blurring dimmable image">
+                <a href="{{ path('monsieurbiz_case_study_case_study_show', { 'slug': case_study.slug }) }}" class="blurring dimmable image">
                     <div class="ui dimmer transition hidden">
                         <div class="content">
                             <div class="center">
@@ -29,15 +29,15 @@
                     {% include '@MonsieurBizSyliusCaseStudyPlugin/Shop/CaseStudy/_image.html.twig' %}
                 </a>
                 <div class="content">
-                    <a href="{{ path('monsieurbiz_case_study_case_study_show', { 'slug': caseStudy.slug }) }}" class="header">
-                        {{ caseStudy.title }}
+                    <a href="{{ path('monsieurbiz_case_study_case_study_show', { 'slug': case_study.slug }) }}" class="header">
+                        {{ case_study.title }}
                     </a>
                     <div class="meta">
-                        <span class="date">{{ caseStudy.publishedAt|format_date() }}</span>
+                        <span class="date">{{ case_study.publishedAt|format_date() }}</span>
                     </div>
-                    {% if caseStudy.description %}
+                    {% if case_study.description %}
                         <div class="description">
-                            {{ caseStudy.description|nl2br }}
+                            {{ case_study.description|nl2br }}
                         </div>
                     {% endif %}
                 </div>

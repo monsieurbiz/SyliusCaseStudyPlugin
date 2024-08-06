@@ -56,7 +56,6 @@ final class CaseStudyRepository extends EntityRepository implements CaseStudyRep
 
     public function findAllEnabledAndPublishedByTag(string $localeCode, ChannelInterface $channel, TagInterface $tag, int $limit): array
     {
-        /** @phpstan-ignore-next-line */
         return $this->createShopListQueryBuilder($localeCode, $channel, $tag)
             ->setMaxResults($limit)
             ->getQuery()
@@ -69,7 +68,6 @@ final class CaseStudyRepository extends EntityRepository implements CaseStudyRep
      */
     public function findOneBySlug(string $slug, string $localeCode): ?CaseStudyInterface
     {
-        /** @phpstan-ignore-next-line */
         return $this->createListQueryBuilder($localeCode)
             ->andWhere('translation.slug = :slug')
             ->setParameter('slug', $slug)
@@ -80,7 +78,6 @@ final class CaseStudyRepository extends EntityRepository implements CaseStudyRep
 
     public function findOnePublishedBySlug(string $slug, string $localeCode, ChannelInterface $channel): ?CaseStudyInterface
     {
-        /** @phpstan-ignore-next-line */
         return $this->createListQueryBuilder($localeCode)
             ->andWhere('translation.slug = :slug')
             ->andWhere(':channel MEMBER OF o.channels')

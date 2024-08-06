@@ -1,7 +1,7 @@
 {% extends '@SyliusShop/layout.html.twig' %}
 
 {% block title %}
-    {{ caseStudy.title }} - {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
+    {{ case_study.title }} - {{ 'monsieurbiz_case_study.ui.case_study'|trans }} {{ parent() }}
 {% endblock %}
 
 {% block metatags %}
@@ -14,7 +14,7 @@
         <div class="divider"> / </div>
         <a href="{{ path('monsieurbiz_case_study_index') }}" class="section">{{ 'monsieurbiz_case_study.ui.case_study'|trans }}</a>
         <div class="divider"> / </div>
-        <div class="active section">{{ caseStudy.title }}</div>
+        <div class="active section">{{ case_study.title }}</div>
     </div>
 
     <div class="ui stackable grid">
@@ -22,14 +22,14 @@
             <div class="ui">
                 <div class="ui header center aligned">
                     <div>
-                        {% for tag in caseStudy.tags %}
+                        {% for tag in case_study.tags %}
                             <a href="{{ path('monsieurbiz_case_study_tag_show', { 'slug': tag.slug }) }}">
                                 {{ tag.name }}
                             </a>
                         {% endfor %}
                     </div>
                     <h1 class="ui huge">
-                        {{ caseStudy.title }}
+                        {{ case_study.title }}
                     </h1>
                 </div>
                 <div class="ui hidden divider"></div>
@@ -39,10 +39,10 @@
                 <div class="ui hidden divider"></div>
                 <div>
                     <div class="ui meta">
-                        <span class="date">{{ caseStudy.publishedAt|format_date() }}</span>
+                        <span class="date">{{ case_study.publishedAt|format_date() }}</span>
                     </div>
                     <div class="ui description">
-                        {{ caseStudy.content|monsieurbiz_richeditor_render_field }}
+                        {{ case_study.content|monsieurbiz_richeditor_render_field }}
                     </div>
                 </div>
             </div>

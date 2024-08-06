@@ -1,8 +1,8 @@
 {% set filter = filter|default('monsieurbiz_case_study_image_thumbnail') %}
 {% set placeholder = placeholder|default('200x200.png') %}
 
-{% if caseStudy.image %}
-    {% set path = caseStudy.image|imagine_filter(filter) %}
+{% if case_study.image %}
+    {% set path = case_study.image|imagine_filter(filter) %}
 {% else %}
     {% if use_webpack %}
         {% set path = asset('build/shop/images/' ~ placeholder, 'shop') %}
@@ -11,4 +11,4 @@
     {% endif %}
 {% endif %}
 
-<img src="{{ path }}" alt="{{ caseStudy.title }}">
+<img src="{{ path }}" alt="{{ case_study.title }}">

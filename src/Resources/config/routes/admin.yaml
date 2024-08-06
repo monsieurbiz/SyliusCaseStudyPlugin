@@ -63,7 +63,7 @@ monsieurbiz_case_study_admin_case_study:
         grid: monsieurbiz_case_study_admin_case_study
         vars:
             index:
-                icon: 'newspaper'
+                icon: 'crosshairs'
             update:
                 templates:
                     toolbar: "@MonsieurBizSyliusCaseStudyPlugin/Admin/CaseStudy/Update/_toolbar.html.twig"

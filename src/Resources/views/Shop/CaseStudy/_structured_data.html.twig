@@ -1,15 +1,15 @@
-{% set NewsArticle = {
+{% set newsArticle = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": caseStudy.title,
-    "datePublished": caseStudy.publishedAt|date('c'),
-    "dateModified": caseStudy.updatedAt|date('c'),
+    "headline": case_study.title,
+    "datePublished": case_study.publishedAt|date('c'),
+    "dateModified": case_study.updatedAt|date('c'),
 } %}
 
-{% if caseStudy.image is not empty %}
+{% if case_study.image is not empty %}
     {% set newsArticle = newsArticle|merge({
         "image": [
-            caseStudy.image|default('monsieurbiz_case_study_image_thumbnail'),
+            case_study.image|default('monsieurbiz_case_study_image_thumbnail'),
         ]
     }) %}
 {% endif %}

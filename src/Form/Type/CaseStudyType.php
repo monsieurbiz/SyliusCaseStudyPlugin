@@ -19,7 +19,6 @@ use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -63,6 +62,10 @@ final class CaseStudyType extends AbstractResourceType
             ])
             ->add('image', ImageType::class, [
                 'label' => 'monsieurbiz_case_study.form.case_study.image',
+                'required' => false,
+            ])
+            ->add('image_thumbnail', ImageType::class, [
+                'label' => 'monsieurbiz_case_study.form.case_study.image_thumbnail',
                 'required' => false,
             ])
             ->add('translations', ResourceTranslationsType::class, [

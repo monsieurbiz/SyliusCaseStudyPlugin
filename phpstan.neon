@@ -9,3 +9,6 @@ parameters:
 
         # Test dependencies
         - 'tests/Application/**/*'
+
+    ignoreErrors:
+        - identifier: missingType.iterableValue
