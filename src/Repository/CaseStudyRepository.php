@@ -90,4 +90,21 @@ final class CaseStudyRepository extends EntityRepository implements CaseStudyRep
             ->getOneOrNullResult()
         ;
     }
+
+    public function findEnabledAndPublishedByIds(array $caseStudyIds, string $localeCode, ChannelInterface $channel, ?int $number = null): array
+    {
+        $queryBuilder = $this->createShopListQueryBuilder($localeCode, $channel, null)
+            ->andWhere('o.id in (:caseStudyIds)')
+            ->addOrderBy('o.publishedAt', 'desc')
+            ->setParameter('caseStudyIds', $caseStudyIds)
+        ;
+
+        if (null !== $number) {
+            $queryBuilder->setMaxResults($number);
+        }
+
+        return $queryBuilder->getQuery()
+            ->getResult()
+        ;
+    }
 }

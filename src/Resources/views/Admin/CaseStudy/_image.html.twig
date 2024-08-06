@@ -1,0 +1,18 @@
+{% set filter = filter|default('monsieurbiz_case_study_image_thumbnail') %}
+{% set placeholder = placeholder|default('200x200.png') %}
+
+{# Thumbnail display #}
+{% if case_study.imageThumbnail and filter == 'monsieurbiz_case_study_image_thumbnail' %}
+    {% set path = case_study.imageThumbnail|imagine_filter(filter) %}
+{# Image display or thumbnail fallback on image #}
+{% elseif case_study.image %}
+    {% set path = case_study.image|imagine_filter(filter) %}
+{% else %}
+    {% if use_webpack %}
+        {% set path = asset('build/shop/images/' ~ placeholder, 'shop') %}
+    {% else %}
+        {% set path = asset('assets/shop/img/' ~ placeholder) %}
+    {% endif %}
+{% endif %}
+
+<img src="{{ path }}" alt="{{ case_study.title }}">

@@ -28,3 +28,13 @@ monsieurbiz_case_study:
         see_more_case_studies: See more case studies
         case_study: Case study
         read_more: Read more
+        no_results_to_display: No results to display
+    ui_element:
+       case_study_ui_element:
+            title: Case study Element
+            description: Display one or two case studies
+            fields:
+                title: Title
+                case_studies: Case studies
+                case_study: Case study
+                position: Position

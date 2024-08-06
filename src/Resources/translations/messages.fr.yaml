@@ -28,3 +28,13 @@ monsieurbiz_case_study:
         see_more_case_studies: Voir plus d'études de cas
         case_study: Étude de cas
         read_more: Lire la suite
+        no_results_to_display: Aucun résultat à afficher
+    ui_element:
+       case_study_ui_element:
+            title: Lame Étude de cas
+            description: Affiche une ou deux étude de cas
+            fields:
+                title: Titre
+                case_studies: Études de cas
+                case_study: Étude de cas
+                position: Position

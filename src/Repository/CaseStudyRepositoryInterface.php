@@ -26,12 +26,14 @@ interface CaseStudyRepositoryInterface extends RepositoryInterface
 {
     public function createListQueryBuilder(string $localeCode): QueryBuilder;
 
-    public function createShopListQueryBuilder(string $localeCode, ChannelInterface $channel, TagInterface $tag): QueryBuilder;
+    public function createShopListQueryBuilder(string $localeCode, ChannelInterface $channel, ?TagInterface $tag): QueryBuilder;
 
     /**
      * @return CaseStudyInterface[]
      */
     public function findAllEnabledAndPublishedByTag(string $localeCode, ChannelInterface $channel, TagInterface $tag, int $limit): array;
+
+    public function findEnabledAndPublishedByIds(array $caseStudyIds, string $localeCode, ChannelInterface $channel, ?int $number = null): array;
 
     public function findOneBySlug(string $slug, string $localeCode): ?CaseStudyInterface;
 
