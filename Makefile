@@ -7,7 +7,7 @@ COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
 export COMPOSE_PROJECT_NAME=sylius_case_study_plugin
 PLUGIN_NAME=sylius-case-study-plugin
-COMPOSE=docker-compose
+COMPOSE=docker compose
 YARN=yarn
 DOCTRINE_MIGRATIONS_NAMESPACE=MonsieurBiz\SyliusCaseStudyPlugin\Migrations
 
