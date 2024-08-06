@@ -30,6 +30,8 @@ final class CaseStudyUiElement implements UiElementInterface
     }
 
     /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     *
      * @return CaseStudyInterface[]
      */
     public function getCaseStudies(array $element): array
@@ -43,8 +45,8 @@ final class CaseStudyUiElement implements UiElementInterface
         }, $caseStudiesArray);
 
         // Prepare sorting
-        usort($caseStudiesArray, function ($a, $b) {
-            return $a['position'] <=> $b['position'];
+        usort($caseStudiesArray, function ($caseStudyA, $caseStudyB) {
+            return $caseStudyA['position'] <=> $caseStudyB['position'];
         });
 
         $result = [];
